@@ -25,8 +25,7 @@ jobs:
           virtualenvs-in-project: true
 
       - name: install python packages
-        run: |
-          python -m poetry install
+        run: poetry install --no-interaction --no-root
 
       - name: execute py script # run main.py
         run: python tiddlywiki_duplicator/main.py https://github.com/EXEvie/hundred-crowns-wiki/index.html https://github.com/EXEvie/hundred-crowns-wiki/dm-notes/index.html 
