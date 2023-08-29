@@ -1,0 +1,34 @@
+name: copy-to-dm-wiki
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2 # checkout the repository content
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' # install the python version needed
+
+      - name: cache poetry install
+        uses: actions/cache@v2
+        with:
+          path: ~/.local
+          key: poetry-1.1.12-0
+
+      - uses: snok/install-poetry@v1
+        with:
+          version: 1.1.12
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: install python packages
+        run: poetry install --no-interaction --no-root
+
+      - name: execute py script # run main.py
+        run: python tiddlywiki_duplicator/main.py https://github.com/EXEvie/hundred-crowns-wiki/index.html https://github.com/EXEvie/hundred-crowns-wiki/dm-notes/index.html 
+
+      - name: commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
