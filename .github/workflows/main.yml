@@ -28,10 +28,9 @@ jobs:
           virtualenvs-in-project: true
 
       - name: install python packages
-        run: poetry install --no-interaction --no-root
-
-      - name: execute py script # run main.py
-        run: python tiddlywiki_duplicator/main.py https://github.com/EXEvie/hundred-crowns-wiki/index.html https://github.com/EXEvie/hundred-crowns-wiki/dm-notes/index.html 
+        run: |
+          poetry install --no-interaction --no-root
+          python tiddlywiki_duplicator/main.py https://github.com/EXEvie/hundred-crowns-wiki/index.html https://github.com/EXEvie/hundred-crowns-wiki/dm-notes/index.html 
 
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
