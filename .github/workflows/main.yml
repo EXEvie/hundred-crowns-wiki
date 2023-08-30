@@ -30,7 +30,7 @@ jobs:
       - name: install python packages
         run: |
           poetry install --no-interaction --no-root
-          poetry run python tiddlywiki_duplicator/main.py https://github.com/EXEvie/hundred-crowns-wiki/index.html https://github.com/EXEvie/hundred-crowns-wiki/dm-notes/index.html 
+          poetry run python tiddlywiki_duplicator/main.py ./index.html ./dm-notes/index.html 
 
       - name: commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
